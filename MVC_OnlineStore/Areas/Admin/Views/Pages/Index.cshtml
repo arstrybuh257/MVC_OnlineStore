@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MVC_OnlineStore.Models.ViewModels.PageViewModel>
+
+@{
+    ViewBag.Title = "Page";
+}
+
+<h2>Страницы</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Добавить новую страницу", "AddPage", "", new { @class = "btn btn-success"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Название
+        </th>
+        <th>
+            Описание
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditPage", new { id=item.PageId }) |
+            @Html.ActionLink("Подробнее", "PageDetails", new { id=item.PageId }) |
+            @Html.ActionLink("Удалить", "DeletePage", new { id=item.PageId })
+        </td>
+    </tr>
+}
+
+</table>
