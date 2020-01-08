@@ -1,0 +1,49 @@
+﻿@model MVC_OnlineStore.Models.ViewModels.PageViewModel
+
+@{
+    ViewBag.Title = "PageDetails";
+}
+
+<h2>PageDetails</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PageId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "EditPage", new { id = Model.PageId}) |
+    @Html.ActionLink("Назад", "Index")
+</p>

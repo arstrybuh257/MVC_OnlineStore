@@ -37,9 +37,22 @@
         <td>
             @Html.ActionLink("Редактировать", "EditPage", new { id=item.PageId }) |
             @Html.ActionLink("Подробнее", "PageDetails", new { id=item.PageId }) |
-            @Html.ActionLink("Удалить", "DeletePage", new { id=item.PageId })
+            @Html.ActionLink("Удалить", "DeletePage", new { id=item.PageId }, new {@class = "delete" })
         </td>
     </tr>
 }
 
 </table>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+
+            $("a.delete").click(function () {
+                if (!confirm("Подтвердите удаление страницы.")) return false;
+            });
+
+        });
+    </script>
+}

@@ -115,6 +115,39 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             TempData["Message"] = "Страница была успешно изменена.";
             return RedirectToAction("EditPage");
         }
+
+        // GET: Admin/Pages/EditPage/id
+        [HttpGet]
+        public ActionResult PageDetails(int id)
+        {
+            Page page = db.Pages.Find(id);
+
+            if (page == null)
+            {
+                return Content("Страница не найдена.");
+            }
+
+            PageViewModel model = new PageViewModel(page);
+
+            return View(model);
+        }
+
+        // GET: Admin/Pages/DeletePage
+        [HttpGet]
+        public ActionResult DeletePage(int id)
+        {
+            Page page = db.Pages.Find(id);
+
+            if(page == null)
+            {
+                return Content("Страница не найдена.");
+            }
+
+            db.Pages.Remove(page);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 
 
