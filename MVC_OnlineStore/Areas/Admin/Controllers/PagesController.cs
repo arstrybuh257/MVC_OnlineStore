@@ -62,7 +62,60 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             TempData["Message"] = "Новая страница была успешно добавлена.";
             return RedirectToAction("Index");
 
-            return View();
+        }
+
+        // GET: Admin/Pages/EditPage/id
+        [HttpGet]
+        public ActionResult EditPage(int id)
+        {
+            Page page = db.Pages.Find(id);
+
+            if (page == null)
+            {
+                return Content("Страница не найдена.");
+            }
+
+            PageViewModel model = new PageViewModel(page);
+
+                return View(model);
+        }
+
+        // POST: Admin/Pages/EditPage
+        [HttpPost]
+        public ActionResult EditPage(PageViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            string description;
+
+            Page newPage = db.Pages.Find(model.PageId);
+            newPage.Title = model.Title.ToUpper();
+
+            if (string.IsNullOrWhiteSpace(model.Description))
+            {
+                description = model.Title.ToLower();
+            }
+            else description = model.Description;
+
+            if (db.Pages.Where(x=> x.PageId != model.PageId).Any(x => x.Title == model.Title))
+            {
+                ModelState.AddModelError("", "Такая страница уже существует.");
+                return View(model);
+            }
+
+            newPage.Description = description;
+            newPage.Body = model.Body;
+            newPage.Sorting = 100;
+
+            db.SaveChanges();
+
+            TempData["Message"] = "Страница была успешно изменена.";
+            return RedirectToAction("EditPage");
         }
     }
+
+
 }
