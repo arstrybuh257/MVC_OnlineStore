@@ -148,6 +148,22 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public void ReorderPages(int [] ids)
+        {
+            int count = 1;
+            Page page;
+            foreach (var pageId in ids)
+            {
+                page = db.Pages.Find(pageId);
+                page.Sorting = count;
+
+                db.SaveChanges();
+
+                count++;
+            }
+        } 
     }
 
 

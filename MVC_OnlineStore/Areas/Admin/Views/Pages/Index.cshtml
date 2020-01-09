@@ -13,10 +13,10 @@
 }
 
 <p>
-    @Html.ActionLink("Добавить новую страницу", "AddPage", "", new { @class = "btn btn-success"})
+    @Html.ActionLink("Добавить новую страницу", "AddPage", "", new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
+<table class="table sorting" id="pages">
+    <tr class="home">
         <th>
             Название
         </th>
@@ -26,21 +26,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "EditPage", new { id=item.PageId }) |
-            @Html.ActionLink("Подробнее", "PageDetails", new { id=item.PageId }) |
-            @Html.ActionLink("Удалить", "DeletePage", new { id=item.PageId }, new {@class = "delete" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr id="id_@item.PageId" class="@item.Description">
+            <td>
+                @if (item.Description != "home")
+                {
+                    <span class="ui-icon ui-icon-arrow-2-n-s"></span>
+                }
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "EditPage", new { id = item.PageId }) |
+                @Html.ActionLink("Подробнее", "PageDetails", new { id = item.PageId })
+                @if (item.Description != "home")
+                {
+                    string slash = "|";
+                    @slash
+                    @Html.ActionLink("Удалить", "DeletePage", new { id = item.PageId }, new { @class = "delete" })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
 
@@ -53,6 +63,16 @@
                 if (!confirm("Подтвердите удаление страницы.")) return false;
             });
 
+            $("table#pages tbody").sortable({
+                items: "tr:not(.home)",
+                placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $("table#pages tbody").sortable("serialize");
+                    var url = "/Admin/Pages/ReorderPages";
+                    console.log(ids);
+                    $.post(url, ids);
+                }
+            });
         });
     </script>
 }
