@@ -1,4 +1,5 @@
-﻿using MVC_OnlineStore.DAL;
+﻿using MVC_OnlineStore.Areas.Admin.Infrastructure;
+using MVC_OnlineStore.DAL;
 using MVC_OnlineStore.Models.DataModels;
 using MVC_OnlineStore.Models.ViewModels;
 using System;
@@ -54,7 +55,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             newPage.Description = description;
             newPage.Body = model.Body;
-            newPage.Sorting = 100;
+            newPage.Sorting = -1;
 
             db.Pages.Add(newPage);
             db.SaveChanges();
@@ -149,9 +150,11 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        // POST: Admin/Pages/ReorderPages
         [HttpPost]
-        public void ReorderPages(int [] ids)
+         public void ReorderPages(ReorderHelper rh)
         {
+            int[] ids = rh.id.ToArray();
             int count = 1;
             Page page;
             foreach (var pageId in ids)

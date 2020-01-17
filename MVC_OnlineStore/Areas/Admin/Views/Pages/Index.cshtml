@@ -44,7 +44,7 @@
                 @Html.ActionLink("Подробнее", "PageDetails", new { id = item.PageId })
                 @if (item.Description != "home")
                 {
-                    string slash = "|";
+                    string slash = "| ";
                     @slash
                     @Html.ActionLink("Удалить", "DeletePage", new { id = item.PageId }, new { @class = "delete" })
                 }
@@ -69,7 +69,6 @@
                 update: function () {
                     var ids = $("table#pages tbody").sortable("serialize");
                     var url = "/Admin/Pages/ReorderPages";
-                    console.log(ids);
                     $.post(url, ids);
                 }
             });
