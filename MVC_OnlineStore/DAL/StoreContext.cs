@@ -7,7 +7,8 @@ namespace MVC_OnlineStore.DAL
     {
         public StoreContext() : base("StoreDb") { }
         public DbSet<Page> Pages { get; set; }
-
         public DbSet<SideBar> SideBars { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
     }
 }
