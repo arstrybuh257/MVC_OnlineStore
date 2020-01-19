@@ -19,5 +19,6 @@ namespace MVC_OnlineStore.Models.DataModels
         [MinLength(3)]
         public string Body { get; set; }
         public int Sorting { get; set; }
+        public bool HasSlidebar { get; set; }
     }
 }

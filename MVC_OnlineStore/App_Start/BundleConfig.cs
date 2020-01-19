@@ -30,6 +30,8 @@ namespace MVC_OnlineStore
                       "~/Content/site.css",
                       "~/Content/jquery-ua.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+                      "~/Scripts/ckeditor/ckeditor.js"));
 
         }
     }

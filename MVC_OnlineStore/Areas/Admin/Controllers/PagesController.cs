@@ -55,7 +55,12 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             newPage.Description = description;
             newPage.Body = model.Body;
-            newPage.Sorting = -1;
+            if (model.Description == "home")
+            {
+                newPage.Sorting = -2;
+            }
+            else newPage.Sorting = -1;
+            newPage.HasSlidebar = model.HasSlidebar;
 
             db.Pages.Add(newPage);
             db.SaveChanges();
@@ -109,7 +114,12 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             newPage.Description = description;
             newPage.Body = model.Body;
-            newPage.Sorting = 100;
+            if (model.Description == "home")
+            {
+                newPage.Sorting = -2;
+            }
+            else newPage.Sorting = -1;
+            newPage.HasSlidebar = model.HasSlidebar;
 
             db.SaveChanges();
 
@@ -166,7 +176,37 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
                 count++;
             }
-        } 
+        }
+
+        // GET: Admin/Pages/EditSideBar
+        [HttpGet]
+        public ActionResult EditSideBar()
+        {
+            SideBarViewModel model;
+
+            SideBar sb = db.SideBars.Find(1);
+
+            model = new SideBarViewModel(sb);
+
+            return View(model);         
+        }
+
+        // POST: Admin/Pages/EditSideBar
+        [HttpPost]
+        public ActionResult EditSideBar(SideBarViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            SideBar newModel = db.SideBars.Find(model.Id);
+            newModel.Body = model.Body;
+            db.SaveChanges();
+
+            TempData["Message"] = "Cайдбар был успешно изменен.";
+            return RedirectToAction("EditSideBar");
+        }
     }
 
 

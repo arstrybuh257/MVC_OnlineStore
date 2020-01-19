@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MVC_OnlineStore.Models.ViewModels
 {
@@ -20,6 +21,7 @@ namespace MVC_OnlineStore.Models.ViewModels
             Description = page.Description;
             Body = page.Body;
             Sorting = page.Sorting;
+            HasSlidebar = page.HasSlidebar;
         }
         public int PageId { get; set; }
         [Required]
@@ -29,7 +31,9 @@ namespace MVC_OnlineStore.Models.ViewModels
         public string Description { get; set; }
         [Required]
         [MinLength(3)]
+        [AllowHtml]
         public string Body { get; set; }
         public int Sorting { get; set; }
+        public bool HasSlidebar { get; set; }
     }
 }
