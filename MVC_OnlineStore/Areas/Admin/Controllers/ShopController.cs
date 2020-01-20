@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVC_OnlineStore.DAL;
+using MVC_OnlineStore.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,15 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 {
     public class ShopController : Controller
     {
+        StoreContext db = new StoreContext();
         // GET: Admin/Shop
         public ActionResult Index()
         {
-            return View();
+            List<CategoryViewModel> categories = db.Categories.ToArray().
+                OrderBy(x => x.Sorting).Select(x => new CategoryViewModel(x)).ToList();
+                
+
+            return View(categories);
         }
     }
 }
