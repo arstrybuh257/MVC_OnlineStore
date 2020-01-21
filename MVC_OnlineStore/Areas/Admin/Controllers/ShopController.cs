@@ -18,7 +18,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
         {
             List<CategoryViewModel> categories = db.Categories.ToArray().
                 OrderBy(x => x.Sorting).Select(x => new CategoryViewModel(x)).ToList();
-                
+
 
             return View(categories);
         }
@@ -29,7 +29,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
         {
             string id;
 
-            if(db.Categories.Any(x=>x.Name == catName))
+            if (db.Categories.Any(x => x.Name == catName))
             {
                 return "titletaken";
             }
@@ -61,6 +61,22 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             TempData["Message"] = "Категория была успешно удалена.";
             return RedirectToAction("Index");
+        }
+
+        //Post: Admin/Shop/RenameCategories
+        [HttpPost]
+        public string RenameCategory(string newCatName, int id)
+        {
+            Category category = db.Categories.Find(id);
+
+            if (db.Categories.Any(x=> x.Name == newCatName))
+            {
+                return "titletaken";
+            }
+            category.Name = newCatName;
+            category.Description = newCatName.Replace(' ', '-').ToLower();
+            db.SaveChanges();
+            return "success";
         }
 
         //Post: Admin/Shop/ReorderCategories
