@@ -13,6 +13,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
     public class ShopController : Controller
     {
         StoreContext db = new StoreContext();
+        #region Actions for categories
         // GET: Admin/Shop
         public ActionResult Index()
         {
@@ -69,7 +70,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
         {
             Category category = db.Categories.Find(id);
 
-            if (db.Categories.Any(x=> x.Name == newCatName))
+            if (db.Categories.Any(x => x.Name == newCatName))
             {
                 return "titletaken";
             }
@@ -95,5 +96,22 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
                 count++;
             }
         }
+        #endregion
+
+        #region Actions for products
+        [HttpGet]
+        public ActionResult AddProduct()
+        {
+            ProductViewModel model = new ProductViewModel();
+
+            model.Categories = new SelectList(db.Categories.ToList(), "id", "Name");
+
+            return View(model);
+        }
+        #endregion
+
+
     }
+
 }
+
