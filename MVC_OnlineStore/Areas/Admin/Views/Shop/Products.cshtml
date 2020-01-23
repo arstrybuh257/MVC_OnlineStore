@@ -9,6 +9,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <h2>Товары</h2>
+
 <select id="SelectCategory" name="SelectCategory">
     <option value="0">All</option>
     @foreach (var item in ViewBag.Categories)
@@ -73,7 +74,7 @@
 
             <td>
                 @Html.ActionLink("Редактировать", "EditProduct", new { id = product.ProductId }, new { @class = "btn btn-info" }) |
-                @Html.ActionLink("Удалить", "DeleteProduct", new { id = product.ProductId }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Удалить", "DeleteProduct", new { id = product.ProductId }, new { @class = "btn btn-danger delete" })
             </td>
 
 

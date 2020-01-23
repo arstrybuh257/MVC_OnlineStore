@@ -19,7 +19,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
         #region Actions for categories
         // GET: Admin/Shop
-        public ActionResult Index()
+        public ActionResult Categories()
         {
             List<CategoryViewModel> categories = db.Categories.ToArray().
                 OrderBy(x => x.Sorting).Select(x => new CategoryViewModel(x)).ToList();
@@ -65,7 +65,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             db.SaveChanges();
 
             TempData["Message"] = "Категория была успешно удалена.";
-            return RedirectToAction("Index");
+            return RedirectToAction("Categories");
         }
 
         //Post: Admin/Shop/RenameCategories
@@ -151,8 +151,8 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             var pathString1 = Path.Combine(originalDirectiory.ToString(), "Products");
             var pathString2 = Path.Combine(originalDirectiory.ToString(), "Products\\" + productId.ToString());
             var pathString3 = Path.Combine(originalDirectiory.ToString(), "Products\\" + productId.ToString() + "\\Thumbs");
-            var pathString4 = Path.Combine(originalDirectiory.ToString(), "Products\\" + productId.ToString() + "\\Thumbs");
-            var pathString5 = Path.Combine(originalDirectiory.ToString(), "Products\\" + productId.ToString() + "\\Thumbs");
+            var pathString4 = Path.Combine(originalDirectiory.ToString(), "Products\\" + productId.ToString() + "\\Gallery");
+            var pathString5 = Path.Combine(originalDirectiory.ToString(), "Products\\" + productId.ToString() + "\\Gallery\\Thumbs");
 
             if (!Directory.Exists(pathString1)) Directory.CreateDirectory(pathString1);
             if (!Directory.Exists(pathString2)) Directory.CreateDirectory(pathString2);
@@ -204,7 +204,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             products = db.Products.ToArray().
                 Where(x => x.Category.Id == catId || catId == 0 ||
-                catId == null).Select(x=> new ProductViewModel(x)).ToList();
+                catId == null).Select(x => new ProductViewModel(x)).ToList();
 
             ViewBag.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
             ViewBag.SelectedCat = catId.ToString();
@@ -232,7 +232,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             model.Categories = new SelectList(db.Categories, "Id", "Name");
             model.Images = Directory
-                .EnumerateFiles(Server.MapPath("~/Images/Uploads/Products/" + id + "/Thumbs"))
+                .EnumerateFiles(Server.MapPath("~/Images/Uploads/Products/" + id + "/Gallery/Thumbs"))
                 .Select(x => Path.GetFileName(x));
 
             return View(model);
@@ -243,18 +243,18 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditProduct(ProductViewModel model, HttpPostedFileBase file)
         {
-            int id   = model.ProductId;
+            int id = model.ProductId;
             model.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
             model.Images = Directory
-                .EnumerateFiles(Server.MapPath("~/Images/Uploads/Products/" + id + "/Thumbs"))
+                .EnumerateFiles(Server.MapPath("~/Images/Uploads/Products/" + id + "/Gallery/Thumbs"))
                 .Select(x => Path.GetFileName(x));
 
             if (!ModelState.IsValid)
-            {             
+            {
                 return View(model);
             }
 
-            if (db.Products.Where(x=> x.ProductId != id).Any(x=>x.Name == model.Name))
+            if (db.Products.Where(x => x.ProductId != id).Any(x => x.Name == model.Name))
             {
                 ModelState.AddModelError("", "Товар с таким именем уже существует!");
                 return View(model);
@@ -272,7 +272,115 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             TempData["Message"] = "Продукт был успешно изменен";
 
+
+            //Images
+            if (file != null && file.ContentLength > 0)
+            {
+                string type = file.ContentType.ToLower();
+
+                if (type != "image/jpg"
+                    && type != "image/jpg"
+                    && type != "image/jpeg"
+                    && type != "image/png"
+                    && type != "image/svg"
+                    && type != "image/gif")
+                {
+                    model.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
+                    ModelState.AddModelError("", "Изображение не было загружено. Неправильный формат файла.");
+                    return View(model);
+                }
+                //Image uploading
+                var originalDirectiory = new DirectoryInfo(string.Format($"{Server.MapPath(@"\")}Images\\Uploads"));
+                var pathString1 = Path.Combine(originalDirectiory.ToString(), "Products\\" + id.ToString());
+                var pathString2 = Path.Combine(originalDirectiory.ToString(), "Products\\" + id.ToString() + "\\Thumbs");
+
+                DirectoryInfo di1 = new DirectoryInfo(pathString1);
+                DirectoryInfo di2 = new DirectoryInfo(pathString2);
+
+                foreach (var item in di2.GetFiles())
+                {
+                    item.Delete();
+                }
+
+                foreach (var item in di1.GetFiles())
+                {
+                    item.Delete();
+                }
+
+                string imageName = file.FileName;
+
+                product = db.Products.Find(id);
+                product.ImageName = imageName;
+                db.SaveChanges();
+
+                var path = string.Format($"{pathString1}\\{imageName}");
+                var path2 = string.Format($"{pathString2}\\{imageName}");
+
+                file.SaveAs(path);
+
+                WebImage img = new WebImage(file.InputStream);
+                img.Resize(200, 200);
+                img.Save(path2);
+
+
+            }
             return RedirectToAction("EditProduct");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteProduct(int id)
+        {
+            Product product = db.Products.Find(id);
+
+            if (product == null)
+            {
+                return Content("Продукт не обнаружен");
+            }
+
+            db.Products.Remove(product);
+            db.SaveChanges();
+
+            var originalDirectiory = new DirectoryInfo(string.Format($"{Server.MapPath(@"\")}Images\\Uploads"));
+            var pathString1 = Path.Combine(originalDirectiory.ToString(), "Products\\" + id.ToString());
+
+            if (Directory.Exists(pathString1))
+            {
+                Directory.Delete(pathString1, true);
+            }
+
+            return RedirectToAction("Products");
+        }
+
+        public void SaveGalleryImages(int id)
+        {
+            foreach (var fileName in Request.Files)
+            {
+                HttpPostedFileBase file = Request.Files[fileName.ToString()];
+
+                var originalDirectory = new DirectoryInfo(string.Format($"{Server.MapPath(@"\")}Images\\Uploads"));
+                var pathString1 = Path.Combine(originalDirectory.ToString(), "Products\\" + id.ToString() + "\\Gallery");
+                var pathString2 = Path.Combine(originalDirectory.ToString(), "Products\\" + id.ToString() + "\\Gallery\\Thumbs");
+
+                var path1 = string.Format($"{pathString1}\\{file.FileName}"); 
+                var path2 = string.Format($"{pathString2}\\{file.FileName}");
+
+                file.SaveAs(path1);
+
+                WebImage img = new WebImage(file.InputStream);
+                img.Resize(200, 200);
+                img.Save(path2);
+            }
+        }
+
+        public void DeleteImage(int id, string imageName)
+        {
+            string fullPath1 = Request.MapPath("~/Images/Uploads/Products/" + id.ToString() + "/Gallery" + imageName);
+            string fullPath2 = Request.MapPath("~/Images/Uploads/Products/" + id.ToString() + "/Gallery/thumbs/" + imageName);
+
+            if (System.IO.File.Exists(fullPath1)) 
+                System.IO.File.Delete(fullPath1);
+            if (System.IO.File.Exists(fullPath2))
+                System.IO.File.Delete(fullPath2);
         }
         #endregion
     }

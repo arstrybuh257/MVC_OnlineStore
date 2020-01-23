@@ -16,7 +16,7 @@
     /* Confirm page deletion */
 
     $("a.delete").click(function () {
-        if (!confirm("Confirm page deletion")) return false;
+        if (!confirm("Подтвердите удаление продукта")) return false;
     });
 
     /*-----------------------------------------------------------*/
