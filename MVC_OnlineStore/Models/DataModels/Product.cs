@@ -17,7 +17,7 @@ namespace MVC_OnlineStore.Models.DataModels
         public string ShortInfo { get; set; }
         [Required]
         public string Description { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public string ImageName { get; set; }
 
         public virtual Category Category { get; set; }      

@@ -17,7 +17,10 @@ namespace MVC_OnlineStore.Models.ViewModels
             ProductId = product.ProductId;
             Name = product.Name;
             ShortInfo = product.ShortInfo;
-            CategoryName = product.Category.Name;
+            if (product.Category != null)
+                CategoryId = product.Category.Id;
+            else
+                CategoryId = 0;
             Description = product.Description;
             Price = product.Price;
             ImageName = product.ImageName;
@@ -28,12 +31,12 @@ namespace MVC_OnlineStore.Models.ViewModels
         [Required]
         public string Name { get; set; }
         public string ShortInfo { get; set; }
-        [Required]
         [DisplayName("Category")]
-        public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
         [Required]
         public string Description { get; set; }
         public double Price { get; set; }
+        [DisplayName("Image")]
         public string ImageName { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }

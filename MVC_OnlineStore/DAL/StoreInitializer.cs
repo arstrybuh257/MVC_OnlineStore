@@ -20,6 +20,7 @@ namespace MVC_OnlineStore.DAL
 
             context.SaveChanges();
             base.Seed(context);
+
         }
     }
 }
