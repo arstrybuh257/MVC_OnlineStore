@@ -21,7 +21,7 @@
         <input type="text" id="newcatname" class="form-control" />
     </div>
     <p>
-        <a href="#" id="newcata" class="btn btn-success">Добавить категорию</a>
+        <a href="#" id="newcata" class="btn add-btn">Добавить категорию</a>
         <span class="ajax-text">
             <img src="~/Content/img/ajax-loader.gif" height="70" />
         </span>
@@ -34,10 +34,10 @@
 }
 else
 {
-    <table class="table sorting" id="pages">
+    <table class="table sorting table-pages" id="pages">
         <tr class="home">
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Название категории 
             </th>
             <th></th>
         </tr>

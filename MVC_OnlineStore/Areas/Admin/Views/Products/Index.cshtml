@@ -10,7 +10,7 @@
 
 <h2>Товары</h2>
 
-<select id="SelectCategory" name="SelectCategory">
+<select id="SelectCategory" name="SelectCategory" class="drop-down-options">
     <option value="0">All</option>
     @foreach (var item in ViewBag.Categories)
     {
@@ -28,9 +28,9 @@
 <br />
 
 <p>
-    @Html.ActionLink("Добавить новый товар", "AddProduct", "", new { @class = "btn btn-success" })
+    @Html.ActionLink("Добавить новый товар", "AddProduct", "", new { @class = "btn add-btn" })
 </p>
-<table class="table">
+<table class="table table-pages">
     <tr>
         <th>
             Name
@@ -73,7 +73,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Редактировать", "EditProduct", new { id = product.ProductId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Редактировать", "EditProduct", new { id = product.ProductId }, new { @class = "btn btn-info" })
                 @Html.ActionLink("Удалить", "DeleteProduct", new { id = product.ProductId }, new { @class = "btn btn-danger delete" })
             </td>
 

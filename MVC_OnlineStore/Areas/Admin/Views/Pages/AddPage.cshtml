@@ -38,24 +38,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HasSlidebar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="checkbox">
+                @Html.LabelFor(model => model.HasSlidebar, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.EditorFor(model => model.HasSlidebar)
-                @Html.ValidationMessageFor(model => model.HasSlidebar, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.HasSlidebar, "", new {@class = "text-danger"})
             </div>
         </div>
 
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-success" />
+            <div class="col-md-offset-2 col-md-10 ">
+                <input type="submit" value="Добавить" class="btn add-btn" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Назад", "Index")
+    @Html.ActionLink("Назад", "Index", "",new{@class="back-link"})
 </div>
 
 

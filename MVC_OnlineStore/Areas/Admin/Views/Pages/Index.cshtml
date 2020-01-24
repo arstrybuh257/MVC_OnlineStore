@@ -3,62 +3,62 @@
 @{
     ViewBag.Title = "Page";
 }
-<h2>Страницы</h2>
-<br/>
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Message"]
-    </div>
-}
+<br />
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success" style="width: 90%">
+                @TempData["Message"]
+            </div>
+        }
 
-<p>
-    @Html.ActionLink("Добавить новую страницу", "AddPage", "", new { @class = "btn btn-success" })
-</p>
-<table class="table sorting" id="pages">
-    <tr class="home">
-        <th>
-            Название
-        </th>
-        <th>
-            Описание
-        </th>
-        <th>
-            Сайдбар
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr id="id_@item.PageId" class="@item.Description">
-            <td>
-                @if (item.Description != "home")
-                {
-                    <img src="~/Content/img/sort.svg" style="width:25px;" />
-                }
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasSlidebar)
-            </td>
-            <td>
-                @Html.ActionLink("Редактировать", "EditPage", new { id = item.PageId}) |
-                @Html.ActionLink("Подробнее", "PageDetails", new { id = item.PageId})
-                @if (item.Description != "home")
-                {
-                    string slash = "| ";
-                    @slash
-                    @Html.ActionLink("Удалить", "DeletePage", new { id = item.PageId }, new { @class = "delete" })
-                }
-            </td>
-        </tr>
-    }
+        <p>
+            @Html.ActionLink("Добавить новую страницу", "AddPage", "", new { @class = "btn add-btn" })
+        </p>
+        <table class="table sorting table-pages" id="pages">
+            <tr class="home">
+                <th>
+                    Название
+                </th>
+                <th>
+                    Описание
+                </th>
+                <th>
+                    Сайдбар
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr id="id_@item.PageId" class="@item.Description">
+                    <td>
+                        @if (item.Description != "home")
+                        {
+                            <img src="~/Content/img/sort.svg" style="width:25px;" />
+                        }
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasSlidebar)
+                    </td>
+                    <td class="last-col">
+                        @Html.ActionLink("Редактировать", "EditPage", new { id = item.PageId }) |
+                        @Html.ActionLink("Подробнее", "PageDetails", new { id = item.PageId })
+                        @if (item.Description != "home")
+                        {
+                            string slash = "| ";
+                            @slash
+                            @Html.ActionLink("Удалить", "DeletePage", new { id = item.PageId }, new { @class = "delete" })
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
 
 @section Scripts
 {
