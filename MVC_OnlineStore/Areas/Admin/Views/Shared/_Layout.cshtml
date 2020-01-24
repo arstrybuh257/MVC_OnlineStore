@@ -23,10 +23,10 @@
                     @Html.ActionLink("Sidebars", "EditSideBar", "Pages", "", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Категории", "Categories", "Shop", "", new { @class = "nav-link" })
+                    @Html.ActionLink("Категории", "Index", "Categories", "", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Товары", "Products", "Shop", "", new { @class = "nav-link" })
+                    @Html.ActionLink("Товары", "Index", "Products", "", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
                     <!--<a class="nav-link" href="#">Pricing</a>-->
@@ -44,6 +44,7 @@
                 </span>*@
         </div>
     </nav>
+    <br />
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Page";
 }
-
 <h2>Страницы</h2>
+<br/>
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success">
@@ -24,7 +24,7 @@
             Описание
         </th>
         <th>
-            Slidebar
+            Сайдбар
         </th>
         <th></th>
     </tr>
@@ -46,8 +46,8 @@
                 @Html.DisplayFor(modelItem => item.HasSlidebar)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "EditPage", new { id = item.PageId }) |
-                @Html.ActionLink("Подробнее", "PageDetails", new { id = item.PageId })
+                @Html.ActionLink("Редактировать", "EditPage", new { id = item.PageId}) |
+                @Html.ActionLink("Подробнее", "PageDetails", new { id = item.PageId})
                 @if (item.Description != "home")
                 {
                     string slash = "| ";

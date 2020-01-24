@@ -2,10 +2,8 @@
 using MVC_OnlineStore.DAL;
 using MVC_OnlineStore.Models.DataModels;
 using MVC_OnlineStore.Models.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVC_OnlineStore.Areas.Admin.Controllers
@@ -17,7 +15,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
         public ActionResult Index()
         {
             List<PageViewModel> pages;
-            pages = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x=> new PageViewModel(x)).ToList();
+            pages = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageViewModel(x)).ToList();
 
             return View(pages);
         }
@@ -47,7 +45,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             }
             else description = model.Description;
 
-            if(db.Pages.Any(x=>x.Title == model.Title))
+            if (db.Pages.Any(x => x.Title == model.Title || x.Description == model.Description))
             {
                 ModelState.AddModelError("", "Такая страница уже существует.");
                 return View(model);
@@ -67,7 +65,6 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             TempData["Message"] = "Новая страница была успешно добавлена.";
             return RedirectToAction("Index");
-
         }
 
         // GET: Admin/Pages/EditPage/id
@@ -83,7 +80,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             PageViewModel model = new PageViewModel(page);
 
-                return View(model);
+            return View(model);
         }
 
         // POST: Admin/Pages/EditPage
@@ -98,28 +95,32 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             string description;
 
             Page newPage = db.Pages.Find(model.PageId);
-            newPage.Title = model.Title.ToUpper();
-
-            if (string.IsNullOrWhiteSpace(model.Description))
+            if (newPage != null)
             {
-                description = model.Title.ToLower();
-            }
-            else description = model.Description;
+                newPage.Title = model.Title.ToUpper();
 
-            if (db.Pages.Where(x=> x.PageId != model.PageId).Any(x => x.Title == model.Title))
-            {
-                ModelState.AddModelError("", "Такая страница уже существует.");
-                return View(model);
-            }
+                if (string.IsNullOrWhiteSpace(model.Description))
+                {
+                    description = model.Title.ToLower();
+                }
+                else description = model.Description;
 
-            newPage.Description = description;
-            newPage.Body = model.Body;
-            if (model.Description == "home")
-            {
-                newPage.Sorting = -2;
+                if (db.Pages.Where(x => x.PageId != model.PageId).Any(x => x.Title == model.Title))
+                {
+                    ModelState.AddModelError("", "Такая страница уже существует.");
+                    return View(model);
+                }
+
+                newPage.Description = description;
+                newPage.Body = model.Body;
+                if (model.Description == "home")
+                {
+                    newPage.Sorting = -2;
+                }
+                else newPage.Sorting = -1;
+
+                newPage.HasSlidebar = model.HasSlidebar;
             }
-            else newPage.Sorting = -1;
-            newPage.HasSlidebar = model.HasSlidebar;
 
             db.SaveChanges();
 
@@ -149,7 +150,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
         {
             Page page = db.Pages.Find(id);
 
-            if(page == null)
+            if (page == null)
             {
                 return Content("Страница не найдена.");
             }
@@ -162,7 +163,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
         // POST: Admin/Pages/ReorderPages
         [HttpPost]
-         public void ReorderPages(ReorderHelper rh)
+        public void ReorderPages(ReorderHelper rh)
         {
             int[] ids = rh.id.ToArray();
             int count = 1;
@@ -170,7 +171,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             foreach (var pageId in ids)
             {
                 page = db.Pages.Find(pageId);
-                page.Sorting = count;
+                if (page != null) page.Sorting = count;
 
                 db.SaveChanges();
 
@@ -188,7 +189,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
 
             model = new SideBarViewModel(sb);
 
-            return View(model);         
+            return View(model);
         }
 
         // POST: Admin/Pages/EditSideBar
@@ -201,13 +202,11 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             }
 
             SideBar newModel = db.SideBars.Find(model.Id);
-            newModel.Body = model.Body;
+            if (newModel != null) newModel.Body = model.Body;
             db.SaveChanges();
 
             TempData["Message"] = "Cайдбар был успешно изменен.";
             return RedirectToAction("EditSideBar");
         }
     }
-
-
 }

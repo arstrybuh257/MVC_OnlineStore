@@ -17,13 +17,13 @@ newCatA.click(function (e) {
     var catName = newCatTextInput.val();
 
     if (catName.length < 3) {
-        alert("Category name must be at least 3 characters long.");
+        alert("Название категории должно содержать по крайней мере три символа.");
         return false;
     }
 
     ajaxText.show();
 
-    var url = "/admin/shop/AddCategory";
+    var url = "/admin/categories/AddCategory";
 
     $.post(url, { catName: catName }, function (data) {
         var response = data.trim();
@@ -54,7 +54,7 @@ newCatA.click(function (e) {
                 var toAppend = $("table#pages tbody tr:last").clone();
                 toAppend.attr("id", "id_" + data);
                 toAppend.find("#item_Name").val(catName);
-                toAppend.find("a.delete").attr("href", "/admin/shop/DeleteCategory/" + data);
+                toAppend.find("a.delete").attr("href", "/admin/categories/DeleteCategory/" + data);
                 table.append(toAppend);
                 table.sortable("refresh");
             }

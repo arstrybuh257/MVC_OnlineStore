@@ -83,7 +83,7 @@
 </table>
 
 @Html.PagedListPager((IPagedList)ViewBag.onePageOfProducts,
-    page => Url.Action("Products", new { page, catId = ViewBag.SelectedCat }))
+    page => Url.Action("Index", new { page, catId = ViewBag.SelectedCat }))
 
 @section Scripts
 {

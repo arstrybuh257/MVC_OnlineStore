@@ -12,7 +12,7 @@
     </div>
 }
 
-@using (Html.BeginForm("AddProduct", "Shop", FormMethod.Post, new { enctype = "multipart/form-data"}))
+@using (Html.BeginForm("AddProduct", "Products", FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
 
@@ -72,7 +72,7 @@
 }
 
 <div>
-    @Html.ActionLink("Назад", "Products")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 @section Scripts

@@ -15,7 +15,7 @@
     </div>
 }
 
-@using (Html.BeginForm("EditProduct", "Shop", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditProduct", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -116,7 +116,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Назад", "Products")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 
@@ -156,12 +156,12 @@
                 if (!confirm("Confirm deletion")) return false;
 
                 var $this = $(this);
-                var url = "/admin/shop/DeleteImage";
+                var url = "/admin/products/DeleteImage";
                 var imageName = $this.data("name");
 
 
                 $.post(url, { id: @Model.ProductId, imageName: imageName }, function(data) {
-                    $this.parent()/*.parent().parent()*/.fadeOut("slow");
+                    $this.parent().parent().parent().fadeOut("slow");
                 });
             });
 
