@@ -89,7 +89,7 @@
     <h3>На данный момент геллерея для этого продукта пуста</h3>
 }
 
-<form action="/admin/shop/SaveGalleryImages" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+<form action="/admin/products/SaveGalleryImages" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
     <div class="fallback">
         <input type="file" name="file" multiple="" />
         <input type="submit" value="Загрузить" />
@@ -108,7 +108,7 @@
                     <img src="/Images/Uploads/Products/@Model.ProductId/Gallery/Thumbs/@item" />
                 </div>
                 <div style="text-align:center">
-                    @Html.ActionLink("Удалить", "DeleteImage", "Shop", new { @class = "deleteimage btn btn-danger", data_name = item, style = "margin: 10px" })
+                    @Html.ActionLink("Удалить", "DeleteImage", "Products", new { @class = "deleteimage btn btn-danger", data_name = item, style = "margin: 10px" })
                 </div>
             </div>
         </div>

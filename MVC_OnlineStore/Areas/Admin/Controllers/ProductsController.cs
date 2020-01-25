@@ -239,7 +239,7 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
                     file.SaveAs(path1);
 
                     WebImage img = new WebImage(file.InputStream);
-                    img.Resize(200, 200);
+                    img.Resize(200, 200).Crop(1,1);
                     img.Save(path2);
                 }
             }

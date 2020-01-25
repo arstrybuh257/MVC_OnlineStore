@@ -58,7 +58,7 @@ namespace MVC_OnlineStore.Areas.Admin.Infrastructure
             file.SaveAs(path);
 
             WebImage img = new WebImage(file.InputStream);
-            img.Resize(200, 200);
+            img.Resize(200, 200).Crop(1,1);
             img.Save(path2);
         }
 

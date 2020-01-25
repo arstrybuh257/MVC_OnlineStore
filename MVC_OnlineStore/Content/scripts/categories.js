@@ -82,7 +82,7 @@ $("table#pages input.text-box").blur(function () {
     var ajaxdiv = $this.parent().parent().parent().find(".ajaxdivtd");
     var newCatName = $this.val();
     var id = $this.parent().parent().parent().parent().parent().attr("id").substring(3);
-    var url = "/admin/shop/RenameCategory";
+    var url = "/admin/categories/RenameCategory";
 
     if (newCatName.length < 3) {
         alert("Category name must be at least 3 characters long.");
@@ -121,7 +121,7 @@ $(function () {
         placeholder: "ui-state-highlight",
         update: function () {
             var ids = $("table#pages tbody").sortable("serialize");
-            var url = "/Admin/Shop/ReorderCategories";
+            var url = "/Admin/Categories/ReorderCategories";
             $.post(url, ids);
         }
     });

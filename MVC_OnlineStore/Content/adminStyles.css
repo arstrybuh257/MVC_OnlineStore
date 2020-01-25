@@ -1,0 +1,206 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #000;
+    color: #B22222;
+    font-family: monospace;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+table.sorting tr:not(.home) {
+    cursor: pointer;
+}
+
+.new-cat {
+    margin-top: 30px;
+    position: relative;
+}
+
+.ajax-text {
+    display: none;
+}
+
+.galleryStyle {
+    margin: 15px;
+    height: 260px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.20), 0 10px 10px rgba(0,0,0,0.20);
+}
+
+    .galleryStyle:hover {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        animation-name: example;
+        animation-duration: 0.25s;
+        border-left: 8px solid #737373;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
+@keyframes example {
+    0% {
+        border-left: 2px solid #ffffff;
+    }
+
+    25% {
+        border-left: 3px solid #ffe6e6;
+    }
+
+    50% {
+        border-left: 4px solid #d6d6d6;
+    }
+
+    100% {
+        border-left: 5px solid #737373;
+    }
+}
+
+.navbar {
+    background-color: #B22222;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-link:active {
+    color: #fff;
+}
+
+.body-content {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.table-pages {
+    background-color: #fff;
+    border-radius: 7px;
+    border-collapse: inherit;
+    width: 90%;
+    text-align: center;
+}
+
+    .table-pages th {
+        width: 20%;
+    }
+
+    .table-pages td {
+        vertical-align: middle
+    }
+
+.last-col {
+    text-align: left;
+    width: 40%;
+}
+
+.add-btn {
+    background-color: #B22222;
+    border-radius: 15px;
+    color: #fff;
+    border: 3px solid #fff;
+}
+
+    .add-btn:hover, .add-btn:focus {
+        background-color: #fff;
+        border-radius: 15px;
+        color: #B22222;
+        border: 3px solid #B22222;
+        box-shadow: none;
+    }
+
+
+.pages-container .alert {
+    width: 90%;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: none;
+}
+
+.text-danger {
+    color: yellow !important;
+}
+
+.back-link {
+    color: #fff;
+    font-size: 20px;
+    border: 1px solid #000;
+    padding: 3px 10px;
+}
+
+    .back-link:hover {
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 15px;
+        border: 1px solid #ffffff
+    }
+
+.control-label {
+    font-size: 1.5em;
+}
+
+.all-info {
+    width: 300px;
+    max-width: 700px;
+    padding: 10px 10px 0 10px;
+    border: 1px solid #d6d6d6;
+    margin-bottom: 30px;
+}
+
+    .all-info dt {
+        margin: 0 !important;
+    }
+
+    .all-info dd, .all-info dt {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        background-color: #d6d6d6;
+        padding: 7px 10px;
+    }
+
+.btn-info {
+    margin: 5px 0;
+}
+
+.drop-down-options, .drop-down-options:focus, .my-textarea {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    outline: none;
+}
+
+.my-textarea {
+    width: 100%;
+    resize: none;
+}
+
+.form-group label {
+    font-size: 1.5em;
+}
+
+.pagination > .active > a {
+    background-color: #b22222 !important;
+    border: 1px solid !important;
+}
+
+.navbar-items {
+    font-size: 1.3em;
+}
+}
