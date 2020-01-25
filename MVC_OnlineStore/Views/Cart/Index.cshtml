@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MVC_OnlineStore.Models.ViewModels.CartViewModel>
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+<h2>Корзина</h2>
+
+@if (ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+else
+{
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Количество
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                Изображение
+            </th>
+
+            <th>
+
+            </th>
+
+            <th>
+                Общая стоимость
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <img src="/Images/Uploads/Products/@item.ProductId/Thumbs/@item.Image" />
+                </td>
+
+                <td>
+                    <a href="#" class="incproduct" data-id="@item.ProductId">+</a>
+                    <a href="#" class="decproduct" data-id="@item.ProductId">-</a>
+                    <a href="#" class="removeproduct" data-id="@item.ProductId">remove</a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total) $
+                </td>
+
+            </tr>
+        }
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@ViewBag.Total $</td>
+        </tr>
+
+    </table>
+}

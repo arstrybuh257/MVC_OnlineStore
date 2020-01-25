@@ -22,6 +22,9 @@ namespace MVC_OnlineStore
             routes.MapRoute("Shop", "Shop/{action}/{name}", new { controller = "Shop", action = "Index", name = UrlParameter.Optional },
                new[] { "MVC_OnlineStore.Controllers" });
 
+            routes.MapRoute("Cart", "Cart/{action}/{id}", new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+               new[] { "MVC_OnlineStore.Controllers" });
+
             routes.MapRoute("Pages", "{page}", new { controller = "Pages", action = "Index" }, 
                 new[] { "MVC_OnlineStore.Controllers" });
 
