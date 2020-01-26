@@ -1,0 +1,5 @@
+﻿@model MVC_OnlineStore.Models.ViewModels.CartViewModel
+
+Корзина: @Model.Quantity товаров - @Model.Price  $
+<br />
+@Html.ActionLink("Оплата", "Index")

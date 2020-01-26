@@ -46,7 +46,7 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
-                <td>
+                <td class="qty@(item.ProductId)">
                     @Html.DisplayFor(modelItem => item.Quantity)
                 </td>
                 <td>
@@ -62,8 +62,8 @@ else
                     <a href="#" class="removeproduct" data-id="@item.ProductId">remove</a>
                 </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Total) $
+                <td class="total@(item.ProductId)">
+                    @Html.DisplayFor(modelItem => item.Total)$
                 </td>
 
             </tr>
@@ -76,8 +76,12 @@ else
             <td></td>
             <td></td>
             <td></td>
-            <td>@ViewBag.Total $</td>
+            <td class="grandtotal"><b>Общая стоимость</b><span>@ViewBag.Total$</span></td>
         </tr>
 
     </table>
+}
+
+@section Scripts{
+    <script src="~/Content/scripts/increment.js"></script>
 }

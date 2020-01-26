@@ -55,4 +55,28 @@
     <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.fancybox.js"></script>
     <script src="~/Content/scripts/productDetails.js"></script>
+
+<script>
+$(function () {
+    $("a.addtocart").click(function (e) {
+        e.preventDefault();
+
+        $("span.loader").addClass("ib");
+
+        var url = "/cart/AddToCartPartial";
+
+        $.get(url, { id: @Model.ProductId}, function myfunction(data) {
+        $(".ajaxcart").html(data);
+        }).done(function () {
+            $("span.loader").removeClass("ib");
+            $("div.ajaxmsg").addClass("ib");
+
+            setTimeout(function () {
+                $("div.ajaxmsg").fadeOut("fast");
+                $("div.ajaxmsg").removeClass("ib");
+            }, 2000);
+        });
+    });
+});
+</script>
 }
