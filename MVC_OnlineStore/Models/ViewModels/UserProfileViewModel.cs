@@ -8,11 +8,14 @@ using System.Web;
 
 namespace MVC_OnlineStore.Models.ViewModels
 {
-    public class UserViewModel
+    public class UserProfileViewModel
     {
-        public UserViewModel() { }
+        public UserProfileViewModel()
+        {
 
-        public UserViewModel(User model)
+        }
+
+        public UserProfileViewModel(User model)
         {
             Id = model.Id;
             FirstName = model.FirstName;
@@ -40,9 +43,7 @@ namespace MVC_OnlineStore.Models.ViewModels
         [DisplayName("Логин")]
         public string Username { get; set; }
         [DisplayName("Пароль")]
-        [Required]
         public string Password { get; set; }
-        [Required]
         [DisplayName("Подтверждение пароля")]
         public string ConfirmPassword { get; set; }
     }

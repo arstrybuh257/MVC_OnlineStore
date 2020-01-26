@@ -13,6 +13,9 @@ namespace MVC_OnlineStore
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Account", "Account/{action}/{id}", new { controller = "Account", action = "Index", id = UrlParameter.Optional },
+               new[] { "MVC_OnlineStore.Controllers" });
+
             routes.MapRoute("PagesMenuPartial", "Pages/PagesMenuPartial", new { controller = "Pages", action = "PagesMenuPartial" },
                 new[] { "MVC_OnlineStore.Controllers" });
 

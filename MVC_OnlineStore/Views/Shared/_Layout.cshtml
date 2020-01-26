@@ -19,7 +19,28 @@
 
                 @Html.Action("PagesMenuPartial", "Pages")
 
-            </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Logout", "Logout", "Account", "", new { @class = "navbar-text" })</li>
+                }
+                else
+                {
+                    if (ViewBag.Title == "Login")
+                    {
+                        <li class="navbar-text">@Html.ActionLink("Login", "Login", "Account", "", new { @class = "active" })</li>
+                    }
+                    else
+                    {
+                        <li class="navbar-text">@Html.ActionLink("Login", "Login", "Account", "", new { @class = "navbar-text" })</li>
+                    }
+                }
+
+                @if (Request.IsAuthenticated)
+                {
+            <li>@Html.Action("UserNavPartial", "Account", new { area = ""})</li>
+                }
+
+                </ul>
             <span class="navbar-text">
                 @Html.Action("CartPartial", "Cart")
             </span>
