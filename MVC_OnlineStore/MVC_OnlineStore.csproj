@@ -150,6 +150,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataModels\Category.cs" />
+    <Compile Include="Models\DataModels\Order.cs" />
+    <Compile Include="Models\DataModels\OrderDetails.cs" />
     <Compile Include="Models\DataModels\Page.cs" />
     <Compile Include="Models\DataModels\Product.cs" />
     <Compile Include="Models\DataModels\Role.cs" />

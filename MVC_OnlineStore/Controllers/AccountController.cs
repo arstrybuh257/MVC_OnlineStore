@@ -102,7 +102,7 @@ namespace MVC_OnlineStore.Controllers
             }
 
             FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
-            return Redirect(FormsAuthentication.GetRedirectUrl(model.Login, model.RememberMe));     
+            return Redirect(FormsAuthentication.GetRedirectUrl(model.Login, model.RememberMe));
         }
 
         public ActionResult Logout()
@@ -115,7 +115,7 @@ namespace MVC_OnlineStore.Controllers
         {
             string userName = User.Identity.Name;
 
-            User user = db.Users.FirstOrDefault(x=> x.Username == userName);
+            User user = db.Users.FirstOrDefault(x => x.Username == userName);
 
             UserNavPartialViewModel model = new UserNavPartialViewModel()
             {
@@ -123,7 +123,7 @@ namespace MVC_OnlineStore.Controllers
                 SecondName = user.SecondName
             };
 
-            return PartialView("_UserNavPartial", model);          
+            return PartialView("_UserNavPartial", model);
         }
 
         [ActionName("user-profile")]
@@ -139,6 +139,69 @@ namespace MVC_OnlineStore.Controllers
             model = new UserProfileViewModel(user);
 
             return View("UserProfile", model);
+        }
+
+        [ActionName("user-profile")]
+        [HttpPost]
+        public ActionResult UserProfile(UserProfileViewModel model)
+        {
+            bool userNameIsChanged = false;
+
+            if (!ModelState.IsValid)
+            {
+                return View("UserProfile", model);
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                if (!model.Password.Equals(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "Пароли не совпадают");
+                }
+            }
+
+            /////////////////////////////////////
+
+            string userName = User.Identity.Name;
+
+            if (model.Username != userName)
+            {
+                userName = model.Username;
+                userNameIsChanged = true;
+            }
+
+            if (db.Users.Where(x => x.Id != model.Id).Any(x => x.Username == model.Username))
+            {
+                ModelState.AddModelError("", $"Имя пользователя {model.Username} уже занято!");
+                model.Username = "";
+                return View("CreateAccount", model);
+            }
+
+            User user = db.Users.Find(model.Id);
+
+            user.FirstName = model.FirstName;
+            user.SecondName = model.SecondName;
+            user.EmailAdress = model.EmailAdress;
+            user.Username = model.Username;
+
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                user.Password = model.Password;
+            }
+
+            db.SaveChanges();
+
+            TempData["Message"] = "Профиль был успешно изменен";
+
+            if (!userNameIsChanged)
+            {
+                return View("UserProfile", model);
+            }
+            else
+            {
+                return RedirectToAction("Logout");
+            }
+
         }
 
 
