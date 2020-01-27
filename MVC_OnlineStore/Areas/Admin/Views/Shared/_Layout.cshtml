@@ -7,7 +7,7 @@
     <title>@ViewBag.Title - Admin Area</title>
 
     @Styles.Render("~/Content/css")
-    <link href="~/Content/adminStyles.css" rel="stylesheet" />
+    <link href="~/Content/@(Session["Theme"])AdminStyles.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>

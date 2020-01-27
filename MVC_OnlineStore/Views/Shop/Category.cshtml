@@ -37,13 +37,24 @@
         </td>
 
         <td>
-            <a href="/shop/product-details/@item.ShortInfo">
-                <img src="/Images/Uploads/Products/@item.ProductId/Thumbs/@item.ImageName"/>
-            </a>
+            @if (!string.IsNullOrEmpty(item.ImageName))
+            {
+                <a href="/shop/product-details/@item.ShortInfo">
+                    <img src="/Images/Uploads/Products/@item.ProductId/Thumbs/@item.ImageName" />
+                </a>
+            }
+            else
+            {
+                <a href="/shop/product-details/@item.ShortInfo">
+                    <img src="~/Content/img/no_image.png"/>
+                </a>
+            }
+
         </td>
 
         <td>
             <a href="/shop/product-details/@item.ShortInfo" class="btn btn-info">Подробнее</a>
+            @*<a href="/shop/product-details/@item.ShortInfo" class="btn btn-success">Добавить в корзину</a>*@
         </td>
     </tr>
 }

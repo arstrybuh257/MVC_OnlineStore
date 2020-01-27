@@ -1,10 +1,7 @@
 ﻿using MVC_OnlineStore.DAL;
 using MVC_OnlineStore.Models.DataModels;
 using MVC_OnlineStore.Models.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -81,7 +78,7 @@ namespace MVC_OnlineStore.Controllers
             {
                 return RedirectToAction("user-profile");
             }
-
+            
             return View();
         }
 
@@ -100,6 +97,13 @@ namespace MVC_OnlineStore.Controllers
                 ModelState.AddModelError("", "Неверные учетные данные");
                 return View(model);
             }
+
+            User user = db.Users.FirstOrDefault(x => x.Username == model.Login);
+            if (!string.IsNullOrEmpty(user.Theme))
+            {
+                Session["Theme"] = user.Theme;
+            }
+            else Session["Theme"] = "dark";
 
             FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
             return Redirect(FormsAuthentication.GetRedirectUrl(model.Login, model.RememberMe));

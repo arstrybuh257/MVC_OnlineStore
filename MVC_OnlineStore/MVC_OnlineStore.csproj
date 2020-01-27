@@ -170,7 +170,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\adminStyles.css" />
+    <Content Include="Content\darkAdminStyles.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -186,6 +186,12 @@
     <Content Include="Content\fancybox\fancybox_sprite%402x.png" />
     <Content Include="Content\fancybox\fancybox_sprite.png" />
     <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\fonts\teko-bold-demo.html" />
+    <Content Include="Content\fonts\teko-light-demo.html" />
+    <Content Include="Content\fonts\teko-medium-demo.html" />
+    <Content Include="Content\fonts\teko-regular-demo.html" />
+    <Content Include="Content\fonts\teko-semibold-demo.html" />
+    <Content Include="Content\icomoon\icomoon.svg" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -201,6 +207,7 @@
     <Content Include="Content\jquery.fancybox-buttons.css" />
     <Content Include="Content\jquery.fancybox-thumbs.css" />
     <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\lightAdminStyles.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\scripts\increment.js" />
     <Content Include="Content\scripts\pages.js" />
@@ -899,6 +906,19 @@
     <Content Include="Areas\Admin\Views\Products\AddProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Products\EditProduct.cshtml" />
+    <Content Include="Content\fonts\teko-bold-webfont.woff" />
+    <Content Include="Content\fonts\teko-bold-webfont.woff2" />
+    <Content Include="Content\fonts\teko-light-webfont.woff" />
+    <Content Include="Content\fonts\teko-light-webfont.woff2" />
+    <Content Include="Content\fonts\teko-medium-webfont.woff" />
+    <Content Include="Content\fonts\teko-medium-webfont.woff2" />
+    <Content Include="Content\fonts\teko-regular-webfont.woff" />
+    <Content Include="Content\fonts\teko-regular-webfont.woff2" />
+    <Content Include="Content\fonts\teko-semibold-webfont.woff" />
+    <Content Include="Content\fonts\teko-semibold-webfont.woff2" />
+    <Content Include="Content\icomoon\icomoon.eot" />
+    <Content Include="Content\icomoon\icomoon.ttf" />
+    <Content Include="Content\icomoon\icomoon.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

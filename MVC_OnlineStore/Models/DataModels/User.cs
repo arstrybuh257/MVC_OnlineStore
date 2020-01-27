@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MVC_OnlineStore.Models.DataModels
 {
@@ -23,5 +19,6 @@ namespace MVC_OnlineStore.Models.DataModels
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+        public string Theme { get; set; }
     }
 }

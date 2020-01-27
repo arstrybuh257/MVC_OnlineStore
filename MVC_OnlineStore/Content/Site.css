@@ -84,3 +84,136 @@ table.sorting tr:not(.home){
 .ib{
     display: inline-block !important;
 }
+
+/*////////////////////////////////////*/
+@font-face {
+    font-family: 'icomoon';
+    src: url('icomoon/icomoon.eot?fua1vu');
+    src: url('icomoon/icomoon.eot?fua1vu#iefix') format('embedded-opentype'), url('icomoons/icomoon.ttf?fua1vu') format('truetype'), url('icomoon/icomoon.woff?fua1vu') format('woff'), url('icomoon/icomoon.svg?fua1vu#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-instagram:before {
+    content: "\e902";
+}
+
+.icon-telegram:before {
+    content: "\e903";
+}
+
+.icon-facebook:before {
+    content: "\e904";
+}
+
+.icon-search:after {
+    content: "\e905";
+}
+
+.icon-tick:before {
+    content: "\e906";
+}
+
+.icon-car:before {
+    content: "\e907";
+}
+
+.icon-user:before {
+    content: "\e908";
+    margin-right:5px;
+}
+
+.icon-sport:before {
+    content: "\e900";
+    font-size:2em;
+}
+
+.icon-gym:before {
+    content: "\e901";
+}
+
+
+@font-face {
+    font-family: 'Teko Bold';
+    src: url('fonts/teko-bold-webfont.woff2') format('woff2'), url('fonts/teko-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Teko Light';
+    src: url('fonts/teko-light-webfont.woff2') format('woff2'), url('fonts/teko-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Teko Medium';
+    src: url('teko-medium-webfont.woff2') format('woff2'), url('teko-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Teko Regular';
+    src: url('teko-regular-webfont.woff2') format('woff2'), url('teko-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'tekosemibold';
+    src: url('teko-semibold-webfont.woff2') format('woff2'), url('teko-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbar-public{
+    background: linear-gradient(to top right, #B0C4DE,#B0E0E6) ;
+}
+
+.my-logo {
+    font-size: 2em;
+    font-family: 'Teko Bold';
+}
+
+.navbar-text {
+    font-family: cursive;
+}
+
+.f-col{
+    text-align:right;
+}
+.icon {
+    display:inline-block;
+    font-size:1.7em;
+}
+.text-social {
+    font-family: cursive;
+    font-size:1.2em;
+}
+
+.search{
+    background-color:#fff;
+    padding:5px;
+    border-radius:5px;
+}
+
+.search>input{
+    border:none;
+}

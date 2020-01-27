@@ -1,8 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #000;
-    color: #B22222;
+    background-color: #fff;
+    color: #000;
     font-family: monospace;
 }
 
@@ -41,8 +41,9 @@ table.sorting tr:not(.home) {
 
 .galleryStyle {
     margin: 15px;
+    padding: 5px;
     height: 260px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.20), 0 10px 10px rgba(0,0,0,0.20);
+    background-color: #ffffff;
 }
 
     .galleryStyle:hover {
@@ -51,7 +52,7 @@ table.sorting tr:not(.home) {
         animation-name: example;
         animation-duration: 0.25s;
         border-left: 8px solid #737373;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        background-color: #ffffff;
     }
 
 @keyframes example {
@@ -73,7 +74,7 @@ table.sorting tr:not(.home) {
 }
 
 .navbar {
-    background-color: #B22222;
+    background-color: #0094ff;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -109,17 +110,17 @@ table.sorting tr:not(.home) {
 }
 
 .add-btn {
-    background-color: #B22222;
+    background-color: #4682B4;
     border-radius: 15px;
     color: #fff;
-    border: 3px solid #fff;
+    border: 3px solid #B0C4DE;
 }
 
     .add-btn:hover, .add-btn:focus {
         background-color: #fff;
         border-radius: 15px;
-        color: #B22222;
-        border: 3px solid #B22222;
+        color: #000;
+        border: 3px solid #000080;
         box-shadow: none;
     }
 
@@ -139,18 +140,19 @@ table.sorting tr:not(.home) {
 }
 
 .back-link {
-    color: #fff;
+    color: #000;
     font-size: 20px;
     border: 1px solid #000;
+    border-radius:2px;
     padding: 3px 10px;
 }
 
     .back-link:hover {
         text-transform: uppercase;
-        color: #fff;
+        color: #000;
         text-decoration: none;
         border-radius: 15px;
-        border: 1px solid #ffffff
+        border: 1px solid #000;
     }
 
 .control-label {
@@ -158,16 +160,26 @@ table.sorting tr:not(.home) {
 }
 
 .all-info {
-    width: 300px;
-    max-width: 700px;
-    padding: 10px 10px 0 10px;
-    border: 1px solid #d6d6d6;
-    margin-bottom: 30px;
+    font-size:0;  
+    margin:-10px;
 }
 
-    .all-info dt {
-        margin: 0 !important;
-    }
+.info-col-1{
+    padding:10px;
+    display:inline-block;
+    width:50%;
+    font-size:16px;
+    vertical-align:top;
+}
+
+.info-col-1 span {
+    font-size:1.2em;
+    font-weight:700;
+ }
+
+.all-info dt {
+    margin: 0 !important;
+ }
 
     .all-info dd, .all-info dt {
         font-size: 1.2em;
@@ -195,12 +207,10 @@ table.sorting tr:not(.home) {
     font-size: 1.5em;
 }
 
-.pagination > .active > a {
-    background-color: #b22222 !important;
-    border: 1px solid !important;
-}
-
 .navbar-items {
     font-size: 1.3em;
 }
+
+.col-photo {
+    margin: 0 auto;
 }

@@ -8,55 +8,77 @@
 
 <div class="row">
 
-    <div class="col-sm-12 col-md-5">
-        <img src="/Images/Uploads/Products/@Model.ProductId/Thumbs/@Model.ImageName" />
-    </div>
+    @if (!string.IsNullOrEmpty(Model.ImageName))
+    {
+        <div class="col-sm-12 col-md-5">
+            <img src="/Images/Uploads/Products/@Model.ProductId/Thumbs/@Model.ImageName" />
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-12 col-md-5">
+            <img src="~/Content/img/no_image.png" />
+        </div>
+    }
 
     <div class="col-sm-12 col-md-7">
+        Описание:
         @Html.DisplayFor(model => model.Description)
         <br />
+        Стоимость:
         @Html.DisplayFor(model => model.Price) $
 
+        @if (Request.IsAuthenticated && User.IsInRole("User"))
+        {
+            <div class="addtocart">
 
-        <div class="addtocart">
-            <a href="#" class="addtocart btn btn-success">Добавить в корзину</a>
-            <span class="loader">
-                <img src="~/Content/img/ajax-loader.gif" height="80" width="100" />
-            </span>
-            <div class="ajaxmsg">
-                Продукт был добавлен в Вашу корзину.
+                <a href="#" class="addtocart btn btn-success">Добавить в корзину</a>
+                <span class="loader">
+                    <img src="~/Content/img/ajax-loader.gif" height="80" width="100" />
+                </span>
+                <div class="ajaxmsg">
+                    Продукт был добавлен в Вашу корзину.
+                </div>
             </div>
-        </div>
-
+        }
     </div>
 </div>
 
 <hr />
 
-<div class="row">
-    <h3>Галлерея</h3>
-    <div class="col-sm-12 fancyboxdiv">
-        <br /><br />
-        <div class="row">
-            @foreach (var item in Model.Images)
-            {
-                <div class="col">
-                    <a class="fancybox" rel="gallery1" href="/Images/Uploads/Products/@Model.ProductId/Gallery/@item">
-                        <img src="/Images/Uploads/Products/@Model.ProductId/Gallery/Thumbs/@item" />
-                    </a>
-                </div>
-            }
+@if (Model.Images != null && Model.Images.Count() != 0)
+{
+    <div class="row">
+        <h3>Галлерея</h3>
+        <div class="col-sm-12 fancyboxdiv">
+            <br /><br />
+            <div class="row">
+                @foreach (var item in Model.Images)
+                {
+                    <div class="col">
+                        <a class="fancybox" rel="gallery1" href="/Images/Uploads/Products/@Model.ProductId/Gallery/@item">
+                            <img src="/Images/Uploads/Products/@Model.ProductId/Gallery/Thumbs/@item" />
+                        </a>
+                    </div>
+                }
+            </div>
         </div>
     </div>
+}
+else
+{
+    <div class="row">
+        <h2>Изображения для этого товара отсутствуют</h2>
+    </div>
+}
 
-</div>
 
 @section Scripts{
     <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.fancybox.js"></script>
     <script src="~/Content/scripts/productDetails.js"></script>
 
-<script>
+    <script>
 $(function () {
     $("a.addtocart").click(function (e) {
         e.preventDefault();
@@ -78,5 +100,5 @@ $(function () {
         });
     });
 });
-</script>
+    </script>
 }

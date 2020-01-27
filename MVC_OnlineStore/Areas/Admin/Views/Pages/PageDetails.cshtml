@@ -5,49 +5,46 @@
 }
 
 <h2>Информация про страницу</h2>
-
 <div class="all-info">
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PageId)
-        </dt>
+    <div class="info-col-1">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PageId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PageId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PageId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HasSlidebar)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HasSlidebar)
+            </dd>
 
-        <dd>
-            @Html.Raw(Model.Body)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HasSlidebar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasSlidebar)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <div class="info-col-1">
+        <span> @Html.DisplayNameFor(model => model.Body)</span>
+        <div>@Html.Raw(Model.Body)</div>   
+</div>     
 </div>
 <p>
     @Html.ActionLink("Редактировать", "EditPage", new { id = Model.PageId},new{@class="back-link"}) |
