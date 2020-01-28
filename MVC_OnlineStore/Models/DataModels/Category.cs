@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVC_OnlineStore.Models.DataModels
 {
@@ -9,7 +8,6 @@ namespace MVC_OnlineStore.Models.DataModels
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Index(IsUnique = true)]
         public string Description { get; set; }
         public int Sorting { get; set; }
 
