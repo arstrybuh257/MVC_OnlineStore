@@ -26,14 +26,17 @@ namespace MVC_OnlineStore.Models.ViewModels
         [MinLength(3)]
         [MaxLength(50)]
         [Required]
+        [DisplayName("Название")]
         public string Name { get; set; }
         public string ShortInfo { get; set; }
-        [DisplayName("Category")]
+        [DisplayName("Категория")]
         public int CategoryId { get; set; }
         [Required]
+        [DisplayName("Описание")]
         public string Description { get; set; }
+        [DisplayName("Цена")]
         public double Price { get; set; }
-        [DisplayName("Image")]
+        [DisplayName("Изображение")]
         public string ImageName { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }

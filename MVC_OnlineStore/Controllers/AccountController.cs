@@ -43,6 +43,12 @@ namespace MVC_OnlineStore.Controllers
                 return View("CreateAccount", model);
             }
 
+            if (model.Password != model.ConfirmPassword)
+            {
+                ModelState.AddModelError("", "Пароли не совпадают!");
+                return View("CreateAccount", model);
+            }
+
             User user = new User()
             {
                 FirstName = model.FirstName,
@@ -112,6 +118,7 @@ namespace MVC_OnlineStore.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session["cart"] = null;
             return RedirectToAction("Login");
         }
 

@@ -79,7 +79,7 @@
             </div>
         }*@
 
-            @if (ViewBag.Title != "Login")
+            @if (ViewBag.Title != "Login" && ViewBag.Title != "User Profile")
             {
                 <div class="col-sm-12 col-md-3 list-group">
                     @Html.Action("CategoryMenuPartial", "Shop")
@@ -122,7 +122,6 @@
 
     </div>
 
-    @Scripts.Render("~/bundles/scripts")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryui")

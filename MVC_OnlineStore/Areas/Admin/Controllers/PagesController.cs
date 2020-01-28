@@ -55,9 +55,9 @@ namespace MVC_OnlineStore.Areas.Admin.Controllers
             newPage.Body = model.Body;
             if (model.Description == "home")
             {
-                newPage.Sorting = -2;
+                newPage.Sorting = 2;
             }
-            else newPage.Sorting = -1;
+            else newPage.Sorting = 100;
             newPage.HasSlidebar = model.HasSlidebar;
 
             db.Pages.Add(newPage);

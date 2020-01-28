@@ -50,7 +50,7 @@ else
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @if (string.IsNullOrEmpty(item.Image))
+                    @if (!string.IsNullOrEmpty(item.Image))
                     {
                         <img src="/Images/Uploads/Products/@item.ProductId/Thumbs/@item.Image" />
                     }

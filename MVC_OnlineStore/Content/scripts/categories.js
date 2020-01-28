@@ -42,7 +42,7 @@ newCatA.click(function (e) {
                 location.reload();
             }
             else {
-                ajaxText.html("<span class='alert alert-success'>The category has been added!</span>");
+                ajaxText.html("<span class='alert alert-success'>Категория была успешно добавлена</span>");
                 setTimeout(function () {
                     ajaxText.fadeOut("fast", function () {
                         ajaxText.html("<img src='/Content/img/ajax-loader.gif' height='50' />");
@@ -85,7 +85,7 @@ $("table#pages input.text-box").blur(function () {
     var url = "/admin/categories/RenameCategory";
 
     if (newCatName.length < 3) {
-        alert("Category name must be at least 3 characters long.");
+        alert("Название категории должно содержать по крайней мере три символа.");
         $this.attr("readonly", true);
         return false;
     }
@@ -95,10 +95,10 @@ $("table#pages input.text-box").blur(function () {
 
         if (response == "titletaken") {
             $this.val(originalTextBoxValue);
-            ajaxdiv.html("<div class='alert alert-danger'>That title is taken!</div>").show();
+            ajaxdiv.html("<div class='alert alert-danger'>Такая категория уже существует.</div>").show();
         }
         else {
-            ajaxdiv.html("<div class='alert alert-success'>The category name has been changed!</div>").show();
+            ajaxdiv.html("<div class='alert alert-success'>Название категории было успешно изменено.</div>").show();
         }
 
         setTimeout(function () {
