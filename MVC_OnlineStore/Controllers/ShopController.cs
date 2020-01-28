@@ -29,6 +29,11 @@ namespace MVC_OnlineStore.Controllers
         {
             List<ProductViewModel> products;
 
+            if(name == null)
+            {
+                ViewBag.CategoryName = "Товары";
+                return View(db.Products.ToArray().Select(x=> new ProductViewModel(x)).ToList());
+            }
             Category category = db.Categories.Where(x => x.Description == name).FirstOrDefault();
 
             products = db.Products.ToArray().Where(x => x.Category.Id == category.Id)

@@ -14,7 +14,7 @@ namespace MVC_OnlineStore.Controllers
         [HttpGet]
         public ActionResult Index(string page = "")
         {
-            if(page == "")
+            if(page == "" || page == "home")
             {
                 page = "home";
             }
@@ -53,5 +53,6 @@ namespace MVC_OnlineStore.Controllers
 
             return PartialView("_SideBarPartial", sideBarViewModel);
         }
+
     }
 }

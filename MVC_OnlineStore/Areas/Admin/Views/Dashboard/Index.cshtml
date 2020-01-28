@@ -1,7 +1,12 @@
-﻿
+﻿@model MVC_OnlineStore.Models.ViewModels.AdminViewModel
+
 @{
-    ViewBag.Title = "Панель управления";
+    ViewBag.Title = "Index";
 }
 
-<h2>Панель управления</h2>
+<div>
+    <h1>Привет @Model.FirstName @Model.SecondName</h1>
+</div>
 
+@Html.ActionLink("Профиль", "EditProfile", "Dashboard")
+@Html.ActionLink("Добавить товар", "AddProduct", "Products")

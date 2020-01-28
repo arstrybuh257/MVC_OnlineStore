@@ -72,53 +72,69 @@
     <div class="container body-content" style="margin-top: 35px;">
         <div class="row">
 
-            @*@if (ViewBag.Title == "Home")
-        {
-            <div class="col-sm-12 col-md-3 list-group">
-                @Html.Action("CategoryMenuPartial", "Shop")
-            </div>
-        }*@
-
-            @if (ViewBag.Title != "Login" && ViewBag.Title != "User Profile")
+            @if (ViewBag.Title == "HOME")
             {
-                <div class="col-sm-12 col-md-3 list-group">
-                    @Html.Action("CategoryMenuPartial", "Shop")
-                </div>
-            }
 
-
-
-            @if (ViewBag.SideBar == "Yes")
-            {
                 <div class="col">
                     @RenderBody()
                 </div>
 
-                <div class="col-sm-12 col-md-3">
-                    @Html.Action("SideBarPartial", "Pages")
-
-                </div>
+                @*<div class="col-sm-12 col-md-3 list-group">
+                        @Html.Action("CategoryMenuPartial", "Shop")
+                    </div>
+                    <div class="col-sm-12 col-md-3 list-group">
+                        @Html.Action("Category", "Shop")
+                    </div>
+                    <div class="col">
+                        @RenderBody()
+                    </div>*@
             }
             else
             {
-                <div class="col">
-                    @RenderBody()
-                </div>
+                if (ViewBag.Title != "Login" && ViewBag.Title != "User Profile")
+                {
+                    <div class="col-sm-12 col-md-3 list-group">
+                        @Html.Action("CategoryMenuPartial", "Shop")
+                    </div>
+                }
+
+                if (ViewBag.SideBar == "Yes")
+                {
+                    <div class="col">
+                        @RenderBody()
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        @Html.Action("SideBarPartial", "Pages")
+
+                    </div>
+                }
+                else
+                {
+                    <div class="col">
+                        @RenderBody()
+                    </div>
+                }
             }
 
+
         </div>
-        <hr />
-        <footer>
-            <div class="row">
-                <div class="col-6  "><p>&copy; @DateTime.Now.Year - TropsShop</p></div>
-                <div class="col-6 f-col">
-                    <div class="text-social">Связь с нами</div>
-                    <div class="icon"><a href="#" class="icon-facebook "></a></div>
-                    <div class=" icon"><a href="#" class="icon-instagram"></a></div>
-                    <div class=" icon"><a href="#" class="icon-telegram"></a></div>
+
+        @if (ViewBag.Title != "HOME")
+        {
+            <hr />
+            <footer>
+                <div class="row">
+                    <div class="col-6  "><p>&copy; @DateTime.Now.Year - TropsShop</p></div>
+                    <div class="col-6 f-col">
+                        <div class="text-social">Связь с нами</div>
+                        <div class="icon"><a href="#" class="icon-facebook "></a></div>
+                        <div class=" icon"><a href="#" class="icon-instagram"></a></div>
+                        <div class=" icon"><a href="#" class="icon-telegram"></a></div>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        }
 
     </div>
 

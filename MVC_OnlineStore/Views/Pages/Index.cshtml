@@ -4,4 +4,11 @@
     ViewBag.Title = ViewBag.PageTitle;
 }
 
-@Html.Raw(Model.Body)
+@if (ViewBag.Title == "HOME")
+{ 
+    @Html.Action("Category", "Shop")
+}
+else
+{
+    @Html.Raw(Model.Body)
+}
