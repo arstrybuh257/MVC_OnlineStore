@@ -264,3 +264,11 @@ table.sorting tr:not(.home){
     border:1px solid #000;
     padding: 3px 5px;
 }
+
+.cart-but{
+    width: 47%;
+}
+
+.cart-rem-but{
+    margin-top: 2px;
+}
