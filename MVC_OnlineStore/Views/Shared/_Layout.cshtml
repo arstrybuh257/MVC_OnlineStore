@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - TropsShop</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,13 +17,22 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="icon-search search">
-            <input type="text" name="name" value="" />
-        </div>
+        @*<div class="icon-search search">
+                <input type="text" name="name" value="" />
+            </div>*@
+
         <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav menu-nab">
 
                 @Html.Action("PagesMenuPartial", "Pages")
+
+                @using (Html.BeginForm("Category", "Shop"))
+                {
+                    <li>
+                        @Html.TextBox("searchString", "", new { @class = "icon-search search" })
+                        <input type="submit" value="Поиск" />
+                    </li>
+                }
 
                 @if (!Request.IsAuthenticated)
                 {
@@ -33,7 +42,7 @@
                     }
                     else
                     {
-                        <li class="navbar-text icon-user">@Html.ActionLink("Войдите в личный кабинет", "Login", "Account", "", new { @class = "navbar-text" })</li>
+                        <li class="navbar-text icon-user right-menu">@Html.ActionLink("Войдите в личный кабинет", "Login", "Account", "", new { @class = "navbar-text" })</li>
                     }
                 }
 
@@ -48,52 +57,42 @@
                         <li>@Html.Action("UserNavPartial", "Account", new { area = "" })</li>
                     }
 
-                    <li>@Html.ActionLink("Logout", "Logout", "Account", "", new { @class = "navbar-text" })</li>
-
                     if (ViewBag.Title != "Корзина")
                     {
-                        <span class="navbar-text">
+                        <li class="navbar-text">
                             @Html.Action("CartPartial", "Cart")
-                        </span>
+                        </li>
                     }
+
+                    <li>@Html.ActionLink("Logout", "Logout", "Account", "", new { @class = "navbar-text" })</li>
                 }
                 else if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
                     <li>@Html.ActionLink("Logout", "Logout", "Account", "", new { @class = "navbar-text" })</li>
-                    <span class="navbar-text">
+                    <li class="navbar-text">
                         @Html.ActionLink("Admin Area", "Index", "Dashboard", new { area = "Admin" }, null)
-                    </span>
+                    </li>
                 }
             </ul>
         </div>
     </nav>
 
 
-    <div class="container body-content" style="margin-top: 35px;">
-        <div class="row">
+    <div class="container body-content">
+        <div class="row body-info">
 
             @if (ViewBag.Title == "HOME")
             {
 
-                <div class="col">
+                <div class="col"style="margin-top: -115px;">
                     @RenderBody()
                 </div>
-
-                @*<div class="col-sm-12 col-md-3 list-group">
-                        @Html.Action("CategoryMenuPartial", "Shop")
-                    </div>
-                    <div class="col-sm-12 col-md-3 list-group">
-                        @Html.Action("Category", "Shop")
-                    </div>
-                    <div class="col">
-                        @RenderBody()
-                    </div>*@
             }
             else
             {
                 if (ViewBag.Title != "Login" && ViewBag.Title != "User Profile")
                 {
-                    <div class="col-sm-12 col-md-3 list-group">
+                    <div class="col col-sm-12 col-md-3 list-group">
                         @Html.Action("CategoryMenuPartial", "Shop")
                     </div>
                 }

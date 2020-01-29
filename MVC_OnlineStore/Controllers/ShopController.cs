@@ -25,18 +25,25 @@ namespace MVC_OnlineStore.Controllers
         }
 
         //GET: Shop/Category/name
-        public ActionResult Category(string name)
+        public ActionResult Category(string name, string searchString)
         {
             List<ProductViewModel> products;
 
             if(name == null)
             {
                 ViewBag.CategoryName = "Товары";
-                return View(db.Products.ToArray().Select(x=> new ProductViewModel(x)).ToList());
+                products = string.IsNullOrEmpty(searchString) ? db.Products.ToArray().Select(x => new ProductViewModel(x)).ToList()
+                    : db.Products.ToArray().Where(x => x.Name.ToLower().Contains(searchString.ToLower())).Select(x => new ProductViewModel(x)).ToList();
+                return View(products);
             }
             Category category = db.Categories.Where(x => x.Description == name).FirstOrDefault();
 
-            products = db.Products.ToArray().Where(x => x.Category.Id == category.Id)
+            products = string.IsNullOrEmpty(searchString) ?
+                db.Products.ToArray()
+                .Where(x => x.Category.Id == category.Id)
+                .Select(x => new ProductViewModel(x)).ToList()
+                : db.Products.ToArray()
+                .Where(x => x.Category.Id == category.Id && x.Name.ToLower().Contains(searchString.ToLower()))
                 .Select(x => new ProductViewModel(x)).ToList();
 
             ViewBag.CategoryName = category.Name;

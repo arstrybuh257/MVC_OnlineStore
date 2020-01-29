@@ -5,8 +5,18 @@
 }
 
 <div>
-    <h1>Привет @Model.FirstName @Model.SecondName</h1>
+    <h1 style="text-align:center; padding-bottom:80px">Привет @Model.FirstName @Model.SecondName</h1>
+</div>
+<div class="row admin-index">
+    <div class="col-6 text-center icon-user-2">
+        <div>
+            @Html.ActionLink("Профиль", "EditProfile", "Dashboard")
+        </div>
+    </div>
+    <div class="col-6 text-center icon-buy">
+        <div>
+            @Html.ActionLink("Добавить товар", "AddProduct", "Products")
+        </div>
+    </div>
 </div>
 
-@Html.ActionLink("Профиль", "EditProfile", "Dashboard")
-@Html.ActionLink("Добавить товар", "AddProduct", "Products")

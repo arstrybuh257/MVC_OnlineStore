@@ -217,3 +217,16 @@ table.sorting tr:not(.home) {
 .col-photo{
     margin:0 auto;
 }
+/*admin main*/
+.admin-index .col-6 > div{
+    padding-top:20px;
+}
+.admin-index a{
+    color:#ffffff;
+    text-transform:uppercase;
+}
+
+.icon-buy:before, .icon-user-2:before {
+    color: #fff;
+    font-size: 100px;
+}

@@ -1,5 +1,6 @@
 ﻿@model MVC_OnlineStore.Models.ViewModels.UserNavPartialViewModel
 
 <li class="navbar-text">
-    <a href="/account/user-profile" style="text-decoration: none">&nbsp;&nbsp;(@Model.FirstName @Model.SecondName)</a>
+    <div style="text-decoration: none">Здравствуйте, @Model.FirstName @Model.SecondName </div>
+    <a  href="/account/user-profile">Редактировать профиль</a>
 </li>

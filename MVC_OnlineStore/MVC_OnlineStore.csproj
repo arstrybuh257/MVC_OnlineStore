@@ -916,11 +916,11 @@
     <Content Include="Content\fonts\teko-regular-webfont.woff2" />
     <Content Include="Content\fonts\teko-semibold-webfont.woff" />
     <Content Include="Content\fonts\teko-semibold-webfont.woff2" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\EditProfile.cshtml" />
     <Content Include="Content\icomoon\icomoon.eot" />
     <Content Include="Content\icomoon\icomoon.ttf" />
     <Content Include="Content\icomoon\icomoon.woff" />
-    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Dashboard\EditProfile.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
